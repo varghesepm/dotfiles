@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bash-dotfiles-updated">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bash-dotfiles-updated.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
