@@ -1,0 +1,10 @@
+for base in /opt/homebrew /usr/local; do
+  [[ -f "$base/etc/profile.d/bash_completion.sh" ]] && { source "$base/etc/profile.d/bash_completion.sh"; break; }
+done
+if [[ -f "$HOME/.config/google-cloud-sdk/completion.bash.inc" ]]; then
+  source "$HOME/.config/google-cloud-sdk/completion.bash.inc"
+fi
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion bash)
+  complete -o default -F __start_kubectl k 2>/dev/null || true
+fi

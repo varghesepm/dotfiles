@@ -1,0 +1,9 @@
+[alias]
+    st = status -sb
+    co = checkout
+    sw = switch
+    br = branch
+    ci = commit
+    ds = diff --staged
+    graph = log --graph --oneline --decorate --all
+    unstage = restore --staged

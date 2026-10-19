@@ -1,0 +1,45 @@
+# Find processes
+# Usage: p docker
+p() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: p <process-name>"
+        return 1
+    fi
+
+    ps aux | grep -i -- "$1" | grep -v '[g]rep'
+}
+
+# Create a directory with today's date
+# Example: 161026
+mkdirtd() {
+    mkdir -p "$(date +%d%m%y)"
+}
+
+# Remove dangling Docker images
+tang() {
+    local -a images
+
+    mapfile -t images < <(
+        docker images --filter dangling=true -q --no-trunc
+    )
+
+    if (( ${#images[@]} == 0 )); then
+        echo "No dangling Docker images found"
+        return 0
+    fi
+
+    docker rmi "${images[@]}"
+}
+
+# IntelliJ IDEA launcher
+ij() {
+    open -a "IntelliJ IDEA" "${@:-.}"
+}
+
+# Reload custom Bash configuration
+bashreload() {
+    exec /opt/homebrew/bin/bash \
+        --noprofile \
+        --rcfile "$HOME/.config/bash/bashrc" \
+        -i
+}

@@ -1,0 +1,23 @@
+# Automatically loaded by Git at ~/.config/git/config
+[user]
+    useConfigOnly = true
+[init]
+    defaultBranch = main
+[fetch]
+    prune = true
+[push]
+    default = current
+    autoSetupRemote = true
+[core]
+    editor = nvim
+[merge]
+    conflictStyle = zdiff3
+[include]
+    path = ~/.config/git/delta.gitconfig
+[include]
+    path = ~/.config/git/aliases.gitconfig
+# Edit the following repository directory patterns to suit your machine.
+[includeIf "gitdir:~/personal/"]
+    path = ~/.config/git/config-personal
+[includeIf "gitdir:~/work/"]
+    path = ~/.config/git/config-work

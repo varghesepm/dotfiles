@@ -1,0 +1,15 @@
+export HISTFILE="$HOME/.config/bash/bash_history"
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTCONTROL=ignoreboth
+HISTTIMEFORMAT='%F %T '
+shopt -s histappend cmdhist
+# Prevent Starship from overwriting our history hook: set an array of hooks.
+_history_sync() { history -a; history -n; }
+if declare -p PROMPT_COMMAND 2>/dev/null | grep -q 'declare -a'; then
+  PROMPT_COMMAND+=( _history_sync )
+elif [[ -n ${PROMPT_COMMAND-} ]]; then
+  PROMPT_COMMAND="_history_sync; $PROMPT_COMMAND"
+else
+  PROMPT_COMMAND=_history_sync
+fi
